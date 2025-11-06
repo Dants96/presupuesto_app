@@ -5,6 +5,4 @@ import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface BudgetRepository extends ReactiveCrudRepository<Budget, Long> {
-
-}
+public interface BudgetRepository extends ReactiveCrudRepository<Budget, Long> {}
