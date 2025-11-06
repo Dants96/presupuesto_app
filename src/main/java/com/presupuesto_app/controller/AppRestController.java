@@ -1,0 +1,15 @@
+package com.presupuesto_app.controller;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController()
+@RequestMapping(path = "/presupuesto-backend")
+public class AppRestController {
+
+    @GetMapping("/health")
+    public String healthCheck() {
+        return "Presupuesto Backend is running";
+    }
+}
