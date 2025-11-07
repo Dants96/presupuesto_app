@@ -6,7 +6,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
-import java.util.HashMap;
+import java.util.Map;
 
 @Service
 public class AuthService {
@@ -23,7 +23,10 @@ public class AuthService {
         return userRepository.findByUsername(username)
             .filter(user -> passwordEncoder.matches(password, user.getPassword()))
             .map(user -> jwtUtil.generateToken(user.getUsername(),
-                new HashMap<>() {{ put("role", user.getRole()); }}))
+                Map.of(
+                    "role", user.getRole(),
+                    "userId", user.getId()
+                )))
             .switchIfEmpty(Mono.error( new RuntimeException("Invalid credentials")));
     }
 }
